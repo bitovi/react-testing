@@ -15,11 +15,5 @@
       "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
     }
   },
-  "projects": {
-    "react-testing": { "tags": [] },
-    "react-testing-e2e": {
-      "tags": [],
-      "implicitDependencies": ["react-testing"]
-    }
-  }
+  "projects": { "hook-testing": { "tags": [] } }
 }
