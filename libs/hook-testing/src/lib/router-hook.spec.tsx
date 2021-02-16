@@ -13,8 +13,9 @@ jest.mock("react-router-dom", () => {
     ...jest.requireActual("react-router-dom"),
 
     // We override the module's `useLocation` implmentation with a mocked
-    // function.
-    useLocation: () => mockUseLocation()
+    // function. We can use rest and spread to pass along any arguments to the
+    // mock without needing to know the number of arguments or type.
+    useLocation: (...args: any[]) => mockUseLocation(...args)
   };
 });
 
@@ -84,6 +85,8 @@ describe("Test an asynchronous custom hook with @testing-library/react-hooks.", 
         wrapper: Wrapper
       }
     );
+
+    expect(result.current).toEqual(undefined);
 
     await waitForValueToChange(() => result.current);
 
