@@ -45,6 +45,111 @@
           }
         }
       }
+    },
+    "portals-lib": {
+      "root": "libs/portals-lib",
+      "sourceRoot": "libs/portals-lib/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/portals-lib/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/portals-lib"
+          ],
+          "options": {
+            "jestConfig": "libs/portals-lib/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "portals": {
+      "root": "apps/portals",
+      "sourceRoot": "apps/portals/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/portals",
+            "index": "apps/portals/src/index.html",
+            "main": "apps/portals/src/main.tsx",
+            "polyfills": "apps/portals/src/polyfills.ts",
+            "tsConfig": "apps/portals/tsconfig.app.json",
+            "assets": [
+              "apps/portals/src/favicon.ico",
+              "apps/portals/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/portals/src/environments/environment.ts",
+                  "with": "apps/portals/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "portals:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "portals:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/portals/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/portals"
+          ],
+          "options": {
+            "jestConfig": "apps/portals/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

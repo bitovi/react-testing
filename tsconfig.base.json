@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@react-testing/hook-testing": ["libs/hook-testing/src/index.ts"]
+      "@react-testing/hook-testing": ["libs/hook-testing/src/index.ts"],
+      "@react-testing/portals": ["libs/portals/src/index.ts"],
+      "@react-testing/portals-lib": ["libs/portals-lib/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
